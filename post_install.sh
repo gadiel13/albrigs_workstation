@@ -20,6 +20,7 @@ SOF_APT=(
     snapd
     code
     krita
+    jupyter-notebook
     buttercup-desktop
     discord
     audacity
@@ -50,7 +51,7 @@ SOFT_SNAP=(
 )
 
 SOFT_FLATPAK=(
-    
+
 )
 
 

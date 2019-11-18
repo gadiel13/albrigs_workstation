@@ -201,6 +201,9 @@ or sudo flatpak update to update all installed flatpaks.
 
 
 #lembrar do XAMPP
+#anaconda
+#java
+#pelican
 
 
 
