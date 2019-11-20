@@ -4,7 +4,6 @@ DIR_DOWNLOADS="$HOME/Downloads"
 DIR_SOFTWARES="$HOME/softwares"
 DIR_ANDROID="$DIR_SOFTWARES/android"
 DIR_FLUTTER="$DIR_SOFTWARES/flutter"
-DIR_MARKTEXT="$DIR_SOFTWARES/marktext"
 
 #Urls a baixar
 URLS_WGET=(
@@ -25,50 +24,56 @@ URL_GITHUB=(
 SOFT_PIP=(
   pelican
 )
+
+#instalar com npm -g
+SOFT_NPM=(
+  ionic
+)
 #PROGRAMAS 
 SOF_APT=(
-    telegram-desktop
-    git
-    python2
-    python3
-    dart
-    snapd
-    code
-    krita
-    jupyter-notebook
-    buttercup-desktop
-    discord
-    audacity
-    dia
-    inkskape
-    libreoffice
-    scribus
-    libvulkan1
-    libvulkan1:i386
-    libgnutls30:i386
-    libldap-2.4-2:i386
-    libgpg-error0:i386
-    libxml2:i386
-    libasound2-plugins:i386
-    libsdl2-2.0-0:i386
-    libfreetype6:i386
-    libdbus-1-3:i386
-    libsqlite3-0:i386
-    libc6:i386 
-    libncurses5:i386 
-    libstdc++6:i386 
-    lib32z1 
-    libbz2-1.0:i386
-    g++ 
-    libx11-dev 
-    libxcursor-dev 
-    cmake 
-    ninja-build
-    
+  firefox
+  telegram-desktop
+  git
+  python2
+  python3
+  dart
+  snapd
+  code
+  krita
+  jupyter-notebook
+  buttercup-desktop
+  discord
+  audacity
+  dia
+  inkskape
+  libreoffice
+  scribus
+  libvulkan1
+  libvulkan1:i386
+  libgnutls30:i386
+  libldap-2.4-2:i386
+  libgpg-error0:i386
+  libxml2:i386
+  libasound2-plugins:i386
+  libsdl2-2.0-0:i386
+  libfreetype6:i386
+  libdbus-1-3:i386
+  libsqlite3-0:i386
+  libc6:i386 
+  libncurses5:i386 
+  libstdc++6:i386 
+  lib32z1 
+  libbz2-1.0:i386
+  g++ 
+  libx11-dev 
+  libxcursor-dev 
+  cmake 
+  ninja-build
+  hugo  
 )
 
 SOFT_SNAP=(
-    insomnia
+  insomnia
 )
 
 SOFT_FLATPAK=(
@@ -112,11 +117,14 @@ for e in ${SOF_APT[@]}; do
   fi
 done
 
-
-
-for e in ${elemento[@]}; do
-  #comando "${e}"
+# Instalar programas snap
+for e in ${SOF_APT[@]}; do
+  sudo snap install "$e" -y
 done
+
+#xampp
+sudo chmod 777 $DIR_DOWNLOADS/*.run
+sudo ./*.run
 
 
 #Atualizando sistema e limpando o lixo que tiver ficado
