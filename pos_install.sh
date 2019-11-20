@@ -4,6 +4,7 @@ DIR_DOWNLOADS="$HOME/Downloads"
 DIR_SOFTWARES="$HOME/softwares"
 DIR_ANDROID="$DIR_SOFTWARES/android"
 DIR_FLUTTER="$DIR_SOFTWARES/flutter"
+DIR_LIBRESPRIT="$DIR_SOFTWARES/libresprite "
 
 #Urls a baixar
 URLS_WGET=(
@@ -30,7 +31,7 @@ SOFT_NPM=(
   ionic
 )
 #PROGRAMAS 
-SOF_APT=(
+SOFT_APT=(
   firefox
   telegram-desktop
   git
@@ -70,6 +71,7 @@ SOF_APT=(
   cmake 
   ninja-build
   hugo  
+  font-manager
 )
 
 SOFT_SNAP=(
@@ -109,7 +111,7 @@ for e in $DIR_DOWNLOADS/*.tar.*; do
 done
 
 # Instalar programas apt
-for e in ${SOF_APT[@]}; do
+for e in ${SOFT_APT[@]}; do
   if ! dpkg -l | grep -q $e; then # Só instala se já não estiver instalado
     sudo apt install "$e" -y
   else
@@ -118,7 +120,7 @@ for e in ${SOF_APT[@]}; do
 done
 
 # Instalar programas snap
-for e in ${SOF_APT[@]}; do
+for e in ${SOFT_SNAP[@]}; do
   sudo snap install "$e" -y
 done
 
@@ -126,6 +128,11 @@ done
 sudo chmod 777 $DIR_DOWNLOADS/*.run
 sudo ./*.run
 
+#configurando libre sprite
+sudo mv $DIR_DOWNLOADS/libresprite $DIR_SOFTWARES
+$DIR_LIBRESPRIT mkdir build
+$DIR_LIBRESPRIT/build cmake -DCMAKE_INSTALL_PREFIX=~/software -G Ninja ..
+$DIR_LIBRESPRIT/build ninja libresprite
 
 #Atualizando sistema e limpando o lixo que tiver ficado
 sudo apt update && sudo apt dist-upgrade -y
@@ -136,10 +143,3 @@ sudo apt autoremove -y
 
 # export PATH="$PATH:`pwd`/flutter/bin"
 # flutter precache
-
-#cd LibreSprite
-#mkdir build
-#cd build
-#cmake -DCMAKE_INSTALL_PREFIX=~/software -G Ninja ..
-#ninja libresprite
-
