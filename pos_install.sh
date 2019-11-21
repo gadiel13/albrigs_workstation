@@ -5,6 +5,7 @@ DIR_SOFTWARES="$HOME/softwares"
 DIR_ANDROID="$DIR_SOFTWARES/android"
 DIR_FLUTTER="$DIR_SOFTWARES/flutter"
 DIR_LIBRESPRIT="$DIR_SOFTWARES/libresprite "
+DIR_ANACONDA="$DIR_SOFTWARES/anaconda"
 
 #Urls a baixar
 URLS_WGET=(
@@ -13,6 +14,7 @@ URLS_WGET=(
   "https://github.com/marktext/marktext/releases/download/v0.15.0/marktext-0.15.0-x86_64.AppImage" #marktext
   "https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh" #anaconda
   "https://www.apachefriends.org/xampp-files/7.3.11/xampp-linux-x64-7.3.11-0-installer.run" #xampp
+  "https://br.wordpress.org/latest-pt_BR.zip" #wordpress
 
 )
 
@@ -29,6 +31,7 @@ SOFT_PIP=(
 #instalar com npm -g
 SOFT_NPM=(
   ionic
+  n
 )
 #PROGRAMAS 
 SOFT_APT=(
@@ -72,14 +75,12 @@ SOFT_APT=(
   ninja-build
   hugo  
   font-manager
+  default-jre
+  openjdk-8-jre
 )
 
 SOFT_SNAP=(
   insomnia
-)
-
-SOFT_FLATPAK=(
-
 )
 
 # Tirando travas do apt
@@ -90,25 +91,24 @@ sudo rm /var/cache/apt/archives/lock
 sudo dpkg --add-architecture i386
 sudo apt update -y
 
-#instalando flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo -y
-
-#instalando mark text
-sudo flatpak install flathub com.github.marktext.marktext -y
-
 ## Download e instalaçao de programas externos ##
-mkdir "$DIR_SOFTWARES"
+mkdir $DIR_SOFTWARES
+mkdir $DIR_FLUTTER
+mkdir $DIR_ANDROID
+mkdir $DIR_ANACONDA
 
+#fazendo 
 for e in ${URLS_WGET[@]}; do
   wget -c "$e" -P "$DIR_DOWNLOADS"
   echo "$e - BAIXADO";
 done
 
+#Extraindo android e flutter
 
-#descompactando todos os tar
-for e in $DIR_DOWNLOADS/*.tar.*; do
-  sudo -C # tar -xzvf "$e";
-done
+sudo tar xvzf $DIR_DOWNLOADS/android-studio* -C $DIR_ANDROID
+sudo tar xvzf $DIR_DOWNLOADS/flutter* -C $DIR_ANDROID
+
+
 
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
@@ -124,12 +124,18 @@ for e in ${SOFT_SNAP[@]}; do
   sudo snap install "$e" -y
 done
 
-#xampp
+#tornando instaladores com mais passos executáveis
 sudo chmod 777 $DIR_DOWNLOADS/*.run
-sudo ./*.run
+sudo chmod 777 $DIR_DOWNLOADS/*.sh
+sudo chmod 777 $DIR_DOWNLOADS/*.AppImage
+
+#movendo Appimages para pasta de downloads
+mv $DIR_DOWNLOADS/*.AppImage $DIR_SOFTWARES
+
+
 
 #configurando libre sprite
-sudo mv $DIR_DOWNLOADS/libresprite $DIR_SOFTWARES
+mv $DIR_DOWNLOADS/libresprite $DIR_SOFTWARES
 $DIR_LIBRESPRIT mkdir build
 $DIR_LIBRESPRIT/build cmake -DCMAKE_INSTALL_PREFIX=~/software -G Ninja ..
 $DIR_LIBRESPRIT/build ninja libresprite
