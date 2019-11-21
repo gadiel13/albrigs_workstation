@@ -48,7 +48,7 @@ SOFT_APT=(
   buttercup-desktop
   discord
   audacity
-  dia
+  dia #desenhar esquemas
   inkskape
   libreoffice
   scribus
@@ -72,11 +72,15 @@ SOFT_APT=(
   libx11-dev 
   libxcursor-dev 
   cmake 
-  ninja-build
-  hugo  
+  ninja-build 
+  hugo  #criador de sites estáticos
   font-manager
-  default-jre
-  openjdk-8-jre
+  default-jre #java mais recente
+  openjdk-8-jre #java 8
+  nano #editor de texto
+  apt-transport-https #transportador https
+  curl
+  
 )
 
 SOFT_SNAP=(
@@ -104,16 +108,13 @@ for e in ${URLS_WGET[@]}; do
 done
 
 #Extraindo android e flutter
-
 sudo tar xvzf $DIR_DOWNLOADS/android-studio* -C $DIR_ANDROID
 sudo tar xvzf $DIR_DOWNLOADS/flutter* -C $DIR_ANDROID
-
-
 
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
   if ! dpkg -l | grep -q $e; then # Só instala se já não estiver instalado
-    sudo apt install "$e" -y
+    sudo apt install $e -y
   else
     echo "$e - INSTALADO"
   fi
@@ -121,7 +122,17 @@ done
 
 # Instalar programas snap
 for e in ${SOFT_SNAP[@]}; do
-  sudo snap install "$e" -y
+  sudo snap install $e -y
+done
+
+# Instalar programas pip
+for e in ${SOFT_PIP[@]}; do
+  pip install $e
+done
+
+# Instalar programas npm
+for e in ${SOFT_NPM[@]}; do
+  sudo npm install -g $e
 done
 
 #tornando instaladores com mais passos executáveis
@@ -132,13 +143,25 @@ sudo chmod 777 $DIR_DOWNLOADS/*.AppImage
 #movendo Appimages para pasta de downloads
 mv $DIR_DOWNLOADS/*.AppImage $DIR_SOFTWARES
 
-
-
 #configurando libre sprite
 mv $DIR_DOWNLOADS/libresprite $DIR_SOFTWARES
 $DIR_LIBRESPRIT mkdir build
 $DIR_LIBRESPRIT/build cmake -DCMAKE_INSTALL_PREFIX=~/software -G Ninja ..
 $DIR_LIBRESPRIT/build ninja libresprite
+
+#Navegador brave
+curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+source /etc/os-release
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
+sudo apt update
+sudo apt install brave-browser -y
+
+
+
+#configurando variáveis ambiente
+
+
+
 
 #Atualizando sistema e limpando o lixo que tiver ficado
 sudo apt update && sudo apt dist-upgrade -y
