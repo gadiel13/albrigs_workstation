@@ -2,14 +2,12 @@
 #Diretórios
 DIR_DOWNLOADS="$HOME/Downloads"
 DIR_SOFTWARES="$HOME/softwares"
-DIR_ANDROID="$DIR_SOFTWARES/android"
 DIR_FLUTTER="$DIR_SOFTWARES/flutter"
-DIR_LIBRESPRIT="$DIR_SOFTWARES/libresprite "
+DIR_LIBRESPRIT="$DIR_SOFTWARES/LibreSprite "
 DIR_ANACONDA="$DIR_SOFTWARES/anaconda"
 
 #Urls a baixar
 URLS_WGET=(
-  "https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz" #android studio
   "https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz" #flutter
   "https://github.com/marktext/marktext/releases/download/v0.15.0/marktext-0.15.0-x86_64.AppImage" #marktext
   "https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh" #anaconda
@@ -85,6 +83,8 @@ SOFT_APT=(
 
 SOFT_SNAP=(
   insomnia
+  brave 
+  android-studio --classic
 )
 
 # Tirando travas do apt
@@ -103,12 +103,11 @@ mkdir $DIR_ANACONDA
 
 #fazendo 
 for e in ${URLS_WGET[@]}; do
-  wget -c "$e" -P "$DIR_DOWNLOADS"
+  $DIR_DOWNLOADS wget -c "$e" -P "$DIR_DOWNLOADS"
   echo "$e - BAIXADO";
 done
 
-#Extraindo android e flutter
-sudo tar xvzf $DIR_DOWNLOADS/android-studio* -C $DIR_ANDROID
+#Extraindo flutter
 sudo tar xvzf $DIR_DOWNLOADS/flutter* -C $DIR_ANDROID
 
 # Instalar programas apt
@@ -123,6 +122,10 @@ done
 # Instalar programas snap
 for e in ${SOFT_SNAP[@]}; do
   sudo snap install $e -y
+done
+
+for e in ${SOFT_GIT[@]}; do
+  $DIR_DOWNLOADS git clone e
 done
 
 # Instalar programas pip
@@ -145,30 +148,26 @@ mv $DIR_DOWNLOADS/*.AppImage $DIR_SOFTWARES
 
 #configurando libre sprite
 mv $DIR_DOWNLOADS/libresprite $DIR_SOFTWARES
-$DIR_LIBRESPRIT mkdir build
+mkdir $DIR_LIBRESPRIT/build
 $DIR_LIBRESPRIT/build cmake -DCMAKE_INSTALL_PREFIX=~/software -G Ninja ..
 $DIR_LIBRESPRIT/build ninja libresprite
 
-#Navegador brave
-curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-source /etc/os-release
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
-sudo apt update
-sudo apt install brave-browser -y
+#definindo path
+
+echo 'export DIR_SOFTWARES="$HOME/softwares"' >> $HOME/.profile
+echo '$ANDROID_HOME =$HOME/Android/Sdk' >> $HOME/.profile
+echo 'export PATH="$PATH:${DIR_SOFTWARES}/LibreSprite/build/bin"' >> $HOME/.profile
+echo 'export PATH="$PATH:/usr/lib/dart/bin"' >> $HOME/.profile
+echo 'export PATH="$PATH:${DIR_FLUTTER}/bin"' >> $HOME/.profile
+echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $HOME/.profile
+echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $HOME/.profile
 
 
 
-#configurando variáveis ambiente
-
-
-
+flutter precache
 
 #Atualizando sistema e limpando o lixo que tiver ficado
 sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean
 sudo apt autoremove -y
 
-
-
-# export PATH="$PATH:`pwd`/flutter/bin"
-# flutter precache
