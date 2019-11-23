@@ -142,7 +142,7 @@ echo 'export PATH="$PATH:${DIR_FLUTTER}/bin"' >> $HOME/.profile
 echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $HOME/.profile
 echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $HOME/.profile
 
-
+source $HOME/.profile
 
 flutter precache
 
