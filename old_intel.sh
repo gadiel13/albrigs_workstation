@@ -11,15 +11,15 @@ sudo echo 'EndSection'  >> $XORG_PATH
 #Configurando cstate
 GRUB_PATH="/etc/default/grub"
 CONTENT_TO_INSERT=' intel_idle.max_cstate=1"'
-TARGET_LINE=GRUB_CMDLINE_LINUX_DEFAULT
-NEW_STRING = " "
+TARGET_LINE="GRUB_CMDLINE_LINUX_DEFAULT"
+NEW_STR = "x"
 
 #criando novo arquivo grub
 while read line; do
-  if[${linen:0:26} == $TARGET_LINE]
+  if [${linen:0:26} == $TARGET_LINE]
   then
-    $NEW_STRING =${linen:0:-1}${CONTENT_TO_INSERT}
-    echo $NEW_STRING >> $HOME/grub 
+    $NEW_STR =${linen:0:-1}${CONTENT_TO_INSERT}
+    echo $NEW_STR >> $HOME/grub 
   else
     echo $linen >> $HOME/grub
   fi

@@ -132,22 +132,34 @@ sudo chmod 777 $DIR_DOWNLOADS/*.AppImage
 #movendo Appimages para pasta de downloads
 mv $DIR_DOWNLOADS/*.AppImage $DIR_SOFTWARES
 
-
+FINAL_MSG = "Finished"
 #definindo path
+PROFILE_PATH = "$HOME/.profile"
+if [ -f $PROFILE_PATH ]; then
+	echo 'export DIR_SOFTWARES="$HOME/softwares"' >> $PROFILE_PATH
+	echo '$ANDROID_HOME =$HOME/Android/Sdk' >> $PROFILE_PATH
+	echo 'export PATH="$PATH:/usr/lib/dart/bin"' >> $PROFILE_PATH
+	echo 'export PATH="$PATH:${DIR_FLUTTER}/bin"' >> $PROFILE_PATH
+	echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $PROFILE_PATH
+	echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $PROFILE_PATH
+	source $PROFILE_PATH
+	flutter precache
+else
+	TMP_PATH = insert_in_path.txt
 
-echo 'export DIR_SOFTWARES="$HOME/softwares"' >> $HOME/.profile
-echo '$ANDROID_HOME =$HOME/Android/Sdk' >> $HOME/.profile
-echo 'export PATH="$PATH:/usr/lib/dart/bin"' >> $HOME/.profile
-echo 'export PATH="$PATH:${DIR_FLUTTER}/bin"' >> $HOME/.profile
-echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $HOME/.profile
-echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $HOME/.profile
+        echo 'export DIR_SOFTWARES="$HOME/softwares"' >> $TMP_PATH
+        echo '$ANDROID_HOME =$HOME/Android/Sdk' >> $TMP_PATH
+        echo 'export PATH="$PATH:/usr/lib/dart/bin"' >> $TMP_PATH
+        echo 'export PATH="$PATH:${DIR_FLUTTER}/bin"' >> $TMP_PATH
+        echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $TMP_PATH
+        echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $TMP_PATH
 
-source $HOME/.profile
-
-flutter precache
+	FINAL_MSG = ".profile not found, config your path with the paths in $HOME/insert_in_path.txt"
+fi
 
 #Atualizando sistema e limpando o lixo que tiver ficado
 sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean
 sudo apt autoremove -y
 
+echo FINAL_MSG
