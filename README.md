@@ -6,8 +6,9 @@ Sempre utilizo sistemas baseados em [Ubuntu](https://ubuntu.com/), não foram fe
 Para utiliza-los execute os seguintes comandos em seu terminal substituindo **filename** pelo nome do script que deseja executar.
 
 ```
-$ sudo chmod +x filename.sh
-$ sudo ./filename.sh
+$ # Você deve estar com o terminal apontando para a pasta onde o script está
+$ sudo chmod +x filename.sh # torna o arquivo executável
+$ sudo ./filename.sh #  executa o arquivo
 ```
 
 ## Os seguintes scripts estão presentes:
