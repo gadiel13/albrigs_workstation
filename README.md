@@ -15,5 +15,5 @@ $ sudo ./filename.sh
 * __my_fonts.sh:__ baixa e instala as fontes tipográficas que utilizo frequentemente em projetos gráficos;
 * __linux_live_usb.sh:__  cria pendrive live a partir de um arquivo na pasta de downloads;
 * __old_intel.sh:__ muda a opção do grub de cs_state_max para evitar travamentos em computadores antigos que utilizam processadores intel.
-* __edit_htdocs.sh:__ extrai o arquvo wordpress do zip em sua pasta de downloads e transporta para a pasta htdocs, tornando ela livre para editar.
+* __wp_install.sh:__ extrai o arquvo wordpress do zip em sua pasta de downloads e transporta para a pasta htdocs, tornando ela livre para editar.
 
