@@ -66,6 +66,7 @@ SOFT_APT=(
   nano #editor de texto
   apt-transport-https #transportador https
   curl
+  okular
   
 )
 
