@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd $HOME
+
 #configurando xorg
 XORG_PATH = "/etc/X11/xorg.conf.d/20-intel.conf"
 

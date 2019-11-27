@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #Diretórios
-DIR_DOWNLOADS="$HOME/Downloads"
+DIR_DOWNLOADS="$HOME/Downloads/fromscript"
 DIR_SOFTWARES="$HOME/softwares"
 DIR_FLUTTER="$DIR_SOFTWARES/flutter"
 DIR_LIBRESPRIT="$DIR_SOFTWARES/LibreSprite "
@@ -17,6 +17,7 @@ URLS_WGET=(
 #instalar com pip
 SOFT_PIP=(
   pelican
+  kivy
 )
 
 #instalar com npm -g
@@ -54,11 +55,11 @@ SOFT_APT=(
   libfreetype6:i386
   libdbus-1-3:i386
   libsqlite3-0:i386
-  libc6:i386 
-  libncurses5:i386 
-  libstdc++6:i386 
-  lib32z1 
-  libbz2-1.0:i386 
+  libc6:i386
+  libncurses5:i386
+  libstdc++6:i386
+  lib32z1
+  libbz2-1.0:i386
   hugo  #criador de sites estáticos
   font-manager
   default-jre #java mais recente
@@ -67,12 +68,17 @@ SOFT_APT=(
   apt-transport-https #transportador https
   curl
   okular
-  
+  preload
+  filezilla
+  gufw
+  synaptic
+  putty
 )
 
 SOFT_SNAP=(
   insomnia
-  brave 
+  brave
+  notepadqq
 )
 
 # Tirando travas do apt
@@ -81,27 +87,28 @@ sudo rm /var/cache/apt/archives/lock
 
 #arquitetura 32 bits
 sudo dpkg --add-architecture i386
-sudo apt -y update 
+sudo apt -y update
 
 ## Download e instalaçao de programas externos ##
 mkdir $DIR_SOFTWARES
 mkdir $DIR_FLUTTER
 mkdir $DIR_ANDROID
 mkdir $DIR_ANACONDA
-
-#fazendo 
+mkdir $DIR_DOWNLOADS
+#fazendo downloads
+cd $DIR_DOWNLOADS
 for e in ${URLS_WGET[@]}; do
-  $DIR_DOWNLOADS wget -c "$e" 
+  wget -c "$e"
   echo "$e - BAIXADO";
 done
 
 #Extraindo flutter
-sudo tar xvzf $DIR_DOWNLOADS/flutter* -C $DIR_ANDROID
+sudo tar xvzf ./flutter* -C $DIR_ANDROID
 
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
   if ! dpkg -l | grep -q $e; then # Só instala se já não estiver instalado
-    sudo apt -y install $e 
+    sudo apt -y install $e
   else
     echo "$e - INSTALADO"
   fi
@@ -109,7 +116,7 @@ done
 
 # Instalar programas snap
 for e in ${SOFT_SNAP[@]}; do
-  sudo snap  install $e 
+  sudo snap  install $e
 done
 
 # Instalar programas pip
@@ -126,12 +133,12 @@ done
 sudo snap install android-studio --classic
 
 #tornando instaladores com mais passos executáveis
-sudo chmod 777 $DIR_DOWNLOADS/*.run
-sudo chmod 777 $DIR_DOWNLOADS/*.sh
-sudo chmod 777 $DIR_DOWNLOADS/*.AppImage
+sudo chmod 777 ./*.run
+sudo chmod 777 ./*.sh
+sudo chmod 777 ./*.AppImage
 
 #movendo Appimages para pasta de downloads
-mv $DIR_DOWNLOADS/*.AppImage $DIR_SOFTWARES
+mv ./*.AppImage $DIR_SOFTWARES
 
 FINAL_MSG = "Finished"
 #definindo path

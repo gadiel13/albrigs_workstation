@@ -1,18 +1,31 @@
 #!/usr/bin/env bash
 
-echo "Site directory name. like-this-example"
+echo "Nome da pasta do site. escrito-desse-jeito"
 read  NAME
+echo "Deletar o arquivo compactado do wordpress em $HOME?"
+echo "s para sim. Qualquer outra coisa que você digitar será considerado não."
+read DELETE
 
-DIR_DOWNLOADS=$HOME/Downloads
-$DIR_DOWNLOADS wget -c https://br.wordpress.org/latest-pt_BR.zip
+cd $HOME
 
-unzip $DIR_DOWNLOADS/latest-pt_BR.zip
+if [ -f $HOME/latest-pt_BR.zip ]; then
+  echo "você já tinha um arquivo com o nome do zip com o nome do baixado do site wordpress. Deseja baixar outro?"
+  echo "s para sim. Qualquer outra coisa que você digitar será considerado não."
+  read BAIXAR
+  if[ $BAIXAR = "s" ]; then
+    wget -c https://br.wordpress.org/latest-pt_BR.zip
+  fi
+else
+    wget -c https://br.wordpress.org/latest-pt_BR.zip
+fi
 
-rm $DIR_DOWNLOADS/latest-pt_BR.zip
+unzip ./latest-pt_BR.zip
 
-mv $DIR_DOWNLOADS/wordpress $DIR_DOWNLOADS/$NAME
+rm ./latest-pt_BR.zip
 
-sudo mv $DIR_DOWNLOADS/$NAME /opt/lampp/htdocs
+mv ./wordpress ./$NAME
+
+sudo mv ./$NAME /opt/lampp/htdocs
 
 
 

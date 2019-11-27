@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
-DOWNLOADS_DIR="$HOME/Downloads"
-$DOWNLOADS_DIR git clone https://github.com/opensourcedesign/fonts.git
+DOWNLOADS_DIR="$HOME/Downloads/fonts"
+mkdir $DOWNLOADS_DIR
+cd $DOWNLOADS_DIR
+
+git clone https://github.com/opensourcedesign/fonts.git
 
 FONTS_DIR ="/usr/local/share/fonts/ms_fonts"
+if [ ! -f $FONTS_DIR ]; then
+  mkdir $FONTS_DIR
 
-#movendo das 
-for e in ${FONTS_DIR[@]}; do
-    for i in $e/*tf; done
-        sudo mv i $FONTS_DIR
-    done
-done
+#movendo fontes pra fora das pastas
+cd fonts
+$FONTS_FOLDERS=`ls`
+$ARR_FOLDERS = ()
+for key in ${!FONTS_FOLDERS[@]}; do $ARR_FOLDERS+=( `$key ${ary[$key]}` ); done
+cd ..
+
+for e in ./fonts; do
+  if[ -d $e ]; then
+    mv $e/* $DOWNLOADS_DIR
 
 #alterando permissões das fontes
 sudo chown root:staff $FONTS_DIR -R
