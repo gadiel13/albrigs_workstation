@@ -12,6 +12,7 @@ URLS_WGET=(
   "https://github.com/marktext/marktext/releases/download/v0.15.0/marktext-0.15.0-x86_64.AppImage" #marktext
   "https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh" #anaconda
   "https://www.apachefriends.org/xampp-files/7.3.11/xampp-linux-x64-7.3.11-0-installer.run" #xampp
+  "http://www.labcisco.com.br/app/Cisco-PT-71-x64.tar.gz" #cisco packet tracer
 )
 
 #instalar com pip
@@ -79,6 +80,7 @@ SOFT_SNAP=(
   insomnia
   brave
   notepadqq
+  spotify
 )
 
 # Tirando travas do apt
