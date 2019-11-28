@@ -13,6 +13,7 @@ URLS_WGET=(
   "https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh" #anaconda
   "https://www.apachefriends.org/xampp-files/7.3.11/xampp-linux-x64-7.3.11-0-installer.run" #xampp
   "http://www.labcisco.com.br/app/Cisco-PT-71-x64.tar.gz" #cisco packet tracer
+  "https://atom.io/download/deb" #atom
 )
 
 #instalar com pip
@@ -35,7 +36,6 @@ SOFT_APT=(
   python3
   dart
   snapd
-  code
   krita
   jupyter-notebook
   buttercup-desktop
@@ -45,6 +45,7 @@ SOFT_APT=(
   inkskape
   libreoffice
   scribus
+  gvfs-bin
   libvulkan1
   libvulkan1:i386
   libgnutls30:i386
@@ -80,7 +81,6 @@ SOFT_SNAP=(
   insomnia
   brave
   notepadqq
-  spotify
 )
 
 # Tirando travas do apt
@@ -98,14 +98,23 @@ mkdir $DIR_ANDROID
 mkdir $DIR_ANACONDA
 mkdir $DIR_DOWNLOADS
 #fazendo downloads
+
 cd $DIR_DOWNLOADS
+
 for e in ${URLS_WGET[@]}; do
   wget -c "$e"
   echo "$e - BAIXADO";
 done
 
+#instalando os .deb
+for e in ./*.deb; do
+  sudo dpkg -i $e
+done
+
 #Extraindo flutter
-sudo tar xvzf ./flutter* -C $DIR_ANDROID
+for e in ./*.tar*; do
+  sudo tar xvzf $e -C $DIR_ANDROID
+done
 
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
@@ -133,6 +142,7 @@ done
 
 #instalar android-studio (ele precisa de uma flag classic)
 sudo snap install android-studio --classic
+
 
 #tornando instaladores com mais passos executáveis
 sudo chmod 777 ./*.run
