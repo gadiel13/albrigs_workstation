@@ -13,17 +13,19 @@ if [ ! -f $FONTS_DIR ]; then
 cd fonts
 $FONTS_FOLDERS=`ls`
 $ARR_FOLDERS = ()
-for key in ${!FONTS_FOLDERS[@]}; do $ARR_FOLDERS+=( `$key ${ary[$key]}` ); done
-cd ..
 
-for e in ./fonts; do
-  if[ -d $e ]; then
-    mv $e/* $DOWNLOADS_DIR
+for key in ${!FONTS_FOLDERS[@]}; do
+	$ARR_FOLDERS+=( `$key ${ary[$key]}` ) #capturando os endereços das pastas
+done
+
+for e in ${ARR_FOLDERS[@]}; do
+	sudo mv $e/* $FONTS_DIR #movendo tudo de dentro de cada pasta para a pasta de fontes
+done
+
+sudo rm -R DIR_DOWNLOADS #deletando as pastas que sobraram
 
 #alterando permissões das fontes
-sudo chown root:staff $FONTS_DIR -R
-sudo chmod 644 $FONTS_DIR/* -R
-sudo chmod 755 $FONTS_DIR
+sudo chmod -R 755 $FONTS_DIR
 
 #recarregando fontes
 sudo fc-cache -fv
