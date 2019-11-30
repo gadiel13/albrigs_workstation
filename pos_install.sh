@@ -26,8 +26,10 @@ SOFT_PIP=(
 SOFT_NPM=(
   ionic
   n
+  expo-cli
 )
-#PROGRAMAS 
+
+#PROGRAMAS
 SOFT_APT=(
   firefox
   telegram-desktop
@@ -155,29 +157,36 @@ sudo chmod 777 ./*.AppImage
 #movendo Appimages para pasta de downloads
 mv ./*.AppImage $DIR_SOFTWARES
 
-FINAL_MSG = "Finished"
+FINAL_MSG="Finished"
 #definindo path
-PROFILE_PATH = "$HOME/.profile"
+PROFILE_PATH="$HOME/.profile"
+PATH_ELEMENTS=(
+  'export DIR_SOFTWARES="${HOME}/softwares"'
+  '$ANDROID_HOME =${HOME}/Android/Sdk'
+  'export PATH="${PATH}:/usr/lib/dart/bin"'
+  'export PATH="${PATH}:${DIR_FLUTTER}/bin"'
+  'export PATH="${PATH}:${ANDROID_HOME}/tools"'
+  'export PATH=${PATH}:${ANDROID_HOME}/tools/bin'
+  'export PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
+
+
+)
+
+
 if [ -f $PROFILE_PATH ]; then
-	echo 'export DIR_SOFTWARES="$HOME/softwares"' >> $PROFILE_PATH
-	echo '$ANDROID_HOME =$HOME/Android/Sdk' >> $PROFILE_PATH
-	echo 'export PATH="$PATH:/usr/lib/dart/bin"' >> $PROFILE_PATH
-	echo 'export PATH="$PATH:${DIR_FLUTTER}/bin"' >> $PROFILE_PATH
-	echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $PROFILE_PATH
-	echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $PROFILE_PATH
-	source $PROFILE_PATH
-	flutter precache
+  for e in ${PATH_ELEMENTS[@]}; do
+    echo $e >> $PROFILE_PATH
+  done
+  source $PROFILE_PATH
+  flutter precache
 else
-	TMP_PATH = insert_in_path.txt
+  TMP_PATH = insert_in_path.txt
 
-        echo 'export DIR_SOFTWARES="$HOME/softwares"' >> $TMP_PATH
-        echo '$ANDROID_HOME =$HOME/Android/Sdk' >> $TMP_PATH
-        echo 'export PATH="$PATH:/usr/lib/dart/bin"' >> $TMP_PATH
-        echo 'export PATH="$PATH:${DIR_FLUTTER}/bin"' >> $TMP_PATH
-        echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $TMP_PATH
-        echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $TMP_PATH
+  for e in ${PATH_ELEMENTS[@]}; do
+    echo $e >> $TMP_PATH
+  done
 
-	FINAL_MSG = ".profile not found, config your path with the paths in $HOME/TMP_PATH"
+  FINAL_MSG = ".profile not found, config your path with the paths in $HOME/TMP_PATH"
 fi
 
 #Atualizando sistema e limpando o lixo que tiver ficado
