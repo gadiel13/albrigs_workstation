@@ -14,6 +14,7 @@ URLS_WGET=(
   "https://www.apachefriends.org/xampp-files/7.3.11/xampp-linux-x64-7.3.11-0-installer.run" #xampp
   "http://www.labcisco.com.br/app/Cisco-PT-71-x64.tar.gz" #cisco packet tracer
   "https://atom.io/download/deb" #atom
+  "https://drive.google.com/uc?export=download&confirm=OJGY&id=1EFo7Ye_rl7bGNr4iehXIgFg4gn2IcWDX" #piskel - editor de pixel art
 )
 
 #instalar com pip
@@ -78,6 +79,7 @@ SOFT_APT=(
   gufw
   synaptic
   putty
+  unzip
   clamav #antivirus
 )
 
@@ -116,6 +118,15 @@ done
 for e in ./*.tar*; do
   sudo tar xvzf $e -C $DIR_ANDROID
 done
+
+#extraindo zip
+for e in ./*.zip; do
+  sudo unzip $e
+done
+
+mv ./Piskel* ./piskel
+sudo chmod 777 ./piskel/piskel
+mv ./piskel $DIR_SOFTWARES
 
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
@@ -165,6 +176,7 @@ FINAL_MSG="Finished"
 PROFILE_PATH="$HOME/.profile"
 PATH_ELEMENTS=(
   'export DIR_SOFTWARES="${HOME}/softwares"'
+  'export PATH="${PATH}:/piskel"'
   '$ANDROID_HOME =${HOME}/Android/Sdk'
   'export PATH="${PATH}:/usr/lib/dart/bin"'
   'export PATH="${PATH}:${DIR_FLUTTER}/bin"'
