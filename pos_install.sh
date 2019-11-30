@@ -32,6 +32,7 @@ SOFT_APT=(
   firefox
   telegram-desktop
   git
+  ppa-purge
   python2
   python3
   dart
@@ -77,11 +78,6 @@ SOFT_APT=(
   putty
 )
 
-SOFT_SNAP=(
-  insomnia
-  brave
-  notepadqq
-)
 
 # Tirando travas do apt
 sudo rm /var/lib/dpkg/lock-frontend
@@ -125,11 +121,6 @@ for e in ${SOFT_APT[@]}; do
   fi
 done
 
-# Instalar programas snap
-for e in ${SOFT_SNAP[@]}; do
-  sudo snap  install $e
-done
-
 # Instalar programas pip
 for e in ${SOFT_PIP[@]}; do
   pip install $e
@@ -142,6 +133,18 @@ done
 
 #instalar android-studio (ele precisa de uma flag classic)
 sudo snap install android-studio --classic
+
+#instalando brave
+sudo sh -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` main" >> /etc/apt/sources.list.d/brave.list'
+wget -q -O - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key add -
+sudo apt -q update
+sudo apt install brave-browser brave-keyring
+
+#instalando insomnia
+echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+sudo apt -q update
+sudo apt-get install insomnia
 
 
 #tornando instaladores com mais passos executáveis
@@ -174,7 +177,7 @@ else
         echo 'export PATH="$PATH:${ANDROID_HOME}/tools"' >> $TMP_PATH
         echo 'export PATH="$PATH:${ANDROID_HOME}/platform-tools"' >> $TMP_PATH
 
-	FINAL_MSG = ".profile not found, config your path with the paths in $HOME/insert_in_path.txt"
+	FINAL_MSG = ".profile not found, config your path with the paths in $HOME/TMP_PATH"
 fi
 
 #Atualizando sistema e limpando o lixo que tiver ficado

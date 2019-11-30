@@ -8,6 +8,7 @@ XORG_PATH = "/etc/X11/xorg.conf.d/20-intel.conf"
 sudo echo 'Section "Device"' >> $XORG_PATH
 sudo echo '   Identifier "Intel Graphics"' >> $XORG_PATH
 sudo echo '   Driver "intel"' >> $XORG_PATH
+sudo echo '   Option "AccelMethod" "sna"' >> $XORG_PATH
 sudo echo 'EndSection'  >> $XORG_PATH
 
 #Configurando cstate
