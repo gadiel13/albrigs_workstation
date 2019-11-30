@@ -105,6 +105,8 @@ for e in ${URLS_WGET[@]}; do
   echo "$e - BAIXADO";
 done
 
+mv deb atom.deb
+
 #instalando os .deb
 for e in ./*.deb; do
   sudo dpkg -i $e
