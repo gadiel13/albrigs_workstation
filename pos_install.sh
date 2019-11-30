@@ -78,6 +78,7 @@ SOFT_APT=(
   gufw
   synaptic
   putty
+  clamav #antivirus
 )
 
 
@@ -168,8 +169,6 @@ PATH_ELEMENTS=(
   'export PATH="${PATH}:${ANDROID_HOME}/tools"'
   'export PATH=${PATH}:${ANDROID_HOME}/tools/bin'
   'export PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
-
-
 )
 
 

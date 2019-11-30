@@ -7,8 +7,7 @@ Para utiliza-los execute os seguintes comandos em seu terminal substituindo **fi
 
 ```
 $ # Você deve estar com o terminal apontando para a pasta onde o script está
-$ sudo chmod +x filename.sh # torna o arquivo executável
-$ sudo ./filename.sh #  executa o arquivo
+$ sudo chmod +x filename.sh && sudo ./filename.sh
 ```
 
 ## Os seguintes scripts estão presentes:
