@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
+
+sudo apt update
+sudo apt upgrade -y
+
 #Diretórios
 DIR_DOWNLOADS="$HOME/Downloads/fromscript"
 DIR_SOFTWARES="$HOME/softwares"
 DIR_FLUTTER="$DIR_SOFTWARES/flutter"
-DIR_LIBRESPRIT="$DIR_SOFTWARES/LibreSprite "
 DIR_ANACONDA="$DIR_SOFTWARES/anaconda"
-
+DIR_ANDROID="$DIR_SOFTWARES/android"
 #Urls a baixar
 URLS_WGET=(
   "https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz" #flutter
@@ -15,6 +18,8 @@ URLS_WGET=(
   "http://www.labcisco.com.br/app/Cisco-PT-71-x64.tar.gz" #cisco packet tracer
   "https://atom.io/download/deb" #atom
   "https://drive.google.com/uc?export=download&confirm=OJGY&id=1EFo7Ye_rl7bGNr4iehXIgFg4gn2IcWDX" #piskel - editor de pixel art
+  "https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz?hl=pt-br"
+  "https://github.com/minbrowser/min/releases/download/v1.7.0/Min_1.7.0_amd64.deb" #navegador minimalista
 )
 
 #instalar com pip
@@ -32,14 +37,15 @@ SOFT_NPM=(
 
 #PROGRAMAS
 SOFT_APT=(
+  gconfig2
   firefox
   telegram-desktop
   git
   ppa-purge
   python2
   python3
+  python3-pip
   dart
-  snapd
   krita
   jupyter-notebook
   buttercup-desktop
@@ -81,6 +87,8 @@ SOFT_APT=(
   putty
   unzip
   clamav #antivirus
+  npm
+  xclip
 )
 
 
@@ -107,12 +115,8 @@ for e in ${URLS_WGET[@]}; do
   echo "$e - BAIXADO";
 done
 
+#acertando o nome do pacote deb
 mv deb atom.deb
-
-#instalando os .deb
-for e in ./*.deb; do
-  sudo dpkg -i $e
-done
 
 #Extraindo flutter
 for e in ./*.tar*; do
@@ -131,10 +135,15 @@ mv ./piskel $DIR_SOFTWARES
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
   if ! dpkg -l | grep -q $e; then # Só instala se já não estiver instalado
-    sudo apt -y install $e
+    sudo apt -f -y install $e
   else
     echo "$e - INSTALADO"
   fi
+done
+
+#instalando os .deb
+for e in ./*.deb; do
+  sudo dpkg -i $e
 done
 
 # Instalar programas pip
@@ -146,9 +155,6 @@ done
 for e in ${SOFT_NPM[@]}; do
   sudo npm install -g $e
 done
-
-#instalar android-studio (ele precisa de uma flag classic)
-sudo snap install android-studio --classic
 
 #instalando brave
 sudo sh -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` main" >> /etc/apt/sources.list.d/brave.list'
@@ -176,10 +182,10 @@ FINAL_MSG="Finished"
 PROFILE_PATH="$HOME/.profile"
 PATH_ELEMENTS=(
   'export DIR_SOFTWARES="${HOME}/softwares"'
-  'export PATH="${PATH}:/piskel"'
-  '$ANDROID_HOME =${HOME}/Android/Sdk'
+  'export PATH="${PATH}:${DIR_SOFTWARES}/piskel"'
+  'ANDROID_HOME =${HOME}/Android/Sdk'
   'export PATH="${PATH}:/usr/lib/dart/bin"'
-  'export PATH="${PATH}:${DIR_FLUTTER}/bin"'
+  'export PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
   'export PATH="${PATH}:${ANDROID_HOME}/tools"'
   'export PATH=${PATH}:${ANDROID_HOME}/tools/bin'
   'export PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
@@ -206,5 +212,8 @@ fi
 sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean
 sudo apt autoremove -y
+
+sudo chmod -R 777 $DIR_DOWNLOADS
+sudo chmod -R 777 $DIR_SOFTWARES
 
 echo FINAL_MSG

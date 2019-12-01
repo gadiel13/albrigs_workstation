@@ -18,7 +18,7 @@ TARGET_LINE="GRUB_CMDLINE_LINUX_DEFAULT"
 NEW_STR = "x"
 
 #criando novo arquivo grub
-while read line; do
+while sudo read line; do
   if [${linen:0:26} == $TARGET_LINE]
   then
     $NEW_STR =${linen:0:-1}${CONTENT_TO_INSERT}
@@ -35,4 +35,4 @@ sudo rm $GRUB_PATH
 sudo mv $HOME/grub /etc/default/
 
 #recarregando grub
-sudo /etc/default/ sudo update-grub
+sudo update-grub
