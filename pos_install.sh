@@ -40,6 +40,7 @@ SOFT_APT=(
   gconfig2
   firefox
   telegram-desktop
+  snapd
   git
   ppa-purge
   python2
@@ -72,7 +73,6 @@ SOFT_APT=(
   libstdc++6:i386
   lib32z1
   libbz2-1.0:i386
-  hugo  #criador de sites estáticos
   font-manager
   default-jre #java mais recente
   openjdk-8-jre #java 8
@@ -168,6 +168,7 @@ wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-ke
 sudo apt -q update
 sudo apt-get install insomnia
 
+sudo snap install hugo
 
 #tornando instaladores com mais passos executáveis
 sudo chmod 777 ./*.run
