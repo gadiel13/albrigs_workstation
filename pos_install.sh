@@ -7,7 +7,6 @@ sudo apt upgrade -y
 DIR_DOWNLOADS="$HOME/Downloads/fromscript"
 DIR_SOFTWARES="$HOME/softwares"
 DIR_FLUTTER="$DIR_SOFTWARES/flutter"
-DIR_ANACONDA="$DIR_SOFTWARES/anaconda"
 DIR_ANDROID="$DIR_SOFTWARES/android"
 #Urls a baixar
 URLS_WGET=(
@@ -17,7 +16,6 @@ URLS_WGET=(
   "https://www.apachefriends.org/xampp-files/7.3.11/xampp-linux-x64-7.3.11-0-installer.run" #xampp
   "http://www.labcisco.com.br/app/Cisco-PT-71-x64.tar.gz" #cisco packet tracer
   "https://atom.io/download/deb" #atom
-  "https://drive.google.com/uc?export=download&confirm=OJGY&id=1EFo7Ye_rl7bGNr4iehXIgFg4gn2IcWDX" #piskel - editor de pixel art
   "https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz?hl=pt-br"
   "https://github.com/minbrowser/min/releases/download/v1.7.0/Min_1.7.0_amd64.deb" #navegador minimalista
 )
@@ -128,9 +126,6 @@ for e in ./*.zip; do
   sudo unzip $e
 done
 
-mv ./Piskel* ./piskel
-sudo chmod 777 ./piskel/piskel
-mv ./piskel $DIR_SOFTWARES
 
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
@@ -156,12 +151,6 @@ for e in ${SOFT_NPM[@]}; do
   sudo npm install -g $e
 done
 
-#instalando brave
-sudo sh -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` main" >> /etc/apt/sources.list.d/brave.list'
-wget -q -O - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key add -
-sudo apt -q update
-sudo apt install brave-browser brave-keyring
-
 #instalando insomnia
 echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
 wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
@@ -183,7 +172,6 @@ FINAL_MSG="Finished"
 PROFILE_PATH="$HOME/.profile"
 PATH_ELEMENTS=(
   'export DIR_SOFTWARES="${HOME}/softwares"'
-  'export PATH="${PATH}:${DIR_SOFTWARES}/piskel"'
   'ANDROID_HOME =${HOME}/Android/Sdk'
   'export PATH="${PATH}:/usr/lib/dart/bin"'
   'export PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
@@ -214,7 +202,7 @@ sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean
 sudo apt autoremove -y
 
-sudo chmod -R 777 $DIR_DOWNLOADS
-sudo chmod -R 777 $DIR_SOFTWARES
+sudo chmod -R 777 $DIR_DOWNLOADS/*
+sudo chmod -R 777 $DIR_SOFTWARES/*
 
 echo FINAL_MSG
