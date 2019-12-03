@@ -14,7 +14,6 @@ URLS_WGET=(
   "https://github.com/marktext/marktext/releases/download/v0.15.0/marktext-0.15.0-x86_64.AppImage" #marktext
   "https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh" #anaconda
   "https://www.apachefriends.org/xampp-files/7.3.11/xampp-linux-x64-7.3.11-0-installer.run" #xampp
-  "http://www.labcisco.com.br/app/Cisco-PT-71-x64.tar.gz" #cisco packet tracer
   "https://atom.io/download/deb" #atom
   "https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz?hl=pt-br"
   "https://github.com/minbrowser/min/releases/download/v1.7.0/Min_1.7.0_amd64.deb" #navegador minimalista
@@ -116,11 +115,6 @@ done
 #acertando o nome do pacote deb
 mv deb atom.deb
 
-#Extraindo flutter
-for e in ./*.tar*; do
-  sudo tar xvzf $e -C $DIR_ANDROID
-done
-
 #extraindo zip
 for e in ./*.zip; do
   sudo unzip $e
@@ -151,11 +145,14 @@ for e in ${SOFT_NPM[@]}; do
   sudo npm install -g $e
 done
 
+sudo wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install sublime-text
+
+
 #instalando insomnia
-echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
-sudo apt -q update
-sudo apt-get install insomnia
+sudo snap install insomnia
 
 sudo snap install hugo
 
@@ -171,13 +168,13 @@ FINAL_MSG="Finished"
 #definindo path
 PROFILE_PATH="$HOME/.profile"
 PATH_ELEMENTS=(
-  'export DIR_SOFTWARES="${HOME}/softwares"'
+  'export&nbsp;DIR_SOFTWARES="${HOME}/softwares"'
   'ANDROID_HOME =${HOME}/Android/Sdk'
-  'export PATH="${PATH}:/usr/lib/dart/bin"'
-  'export PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
-  'export PATH="${PATH}:${ANDROID_HOME}/tools"'
-  'export PATH=${PATH}:${ANDROID_HOME}/tools/bin'
-  'export PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
+  'export&nbsp;PATH="${PATH}:/usr/lib/dart/bin"'
+  'export&nbsp;PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
+  'export&nbsp;PATH="${PATH}:${ANDROID_HOME}/tools"'
+  'export&nbsp;PATH=${PATH}:${ANDROID_HOME}/tools/bin'
+  'export&nbsp;PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
 )
 
 
