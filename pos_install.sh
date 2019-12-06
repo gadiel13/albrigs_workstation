@@ -154,6 +154,7 @@ done
 for e in ./*.deb; do
   sudo dpkg -i $e
 done
+sudo rm -R ./*.deb
 
 # Instalar programas pip
 for e in ${SOFT_PIP[@]}; do
@@ -187,22 +188,23 @@ sudo mv ./* $DIR_SOFTWARES
 FINAL_MSG="Finished"
 #definindo path
 PROFILE_PATH="$HOME/.profile"
+STRING_SPACE = ' '
 PATH_ELEMENTS=(
-  'export&nbsp;DIR_SOFTWARES="${HOME}/softwares"'
+  'DIR_SOFTWARES="${HOME}/softwares"'
   'ANDROID_HOME =${HOME}/Android/Sdk'
-  'export PATH="${PATH}:/usr/lib/dart/bin"'
-  'export PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
-  'export PATH="${PATH}:${ANDROID_HOME}/tools"'
-  'export PATH=${PATH}:${ANDROID_HOME}/tools/bin'
-  'export PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
-  'export lampp=/opt/lampp/lampp'
-  'export marktext=$DIR_SOFTWARES/marktext*' 
+  'PATH="${PATH}:/usr/lib/dart/bin"'
+  'PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
+  'PATH="${PATH}:${ANDROID_HOME}/tools"'
+  'PATH=${PATH}:${ANDROID_HOME}/tools/bin'
+  'PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
+  'lampp=/opt/lampp/lampp'
+  'marktext=$DIR_SOFTWARES/marktext*'
 )
 
 
 if [ -f $PROFILE_PATH ]; then
   for e in ${PATH_ELEMENTS[@]}; do
-    echo $e >> $PROFILE_PATH
+    echo'export' $e >> $PROFILE_PATH
   done
   source $PROFILE_PATH
   flutter precache
@@ -210,7 +212,7 @@ else
   TMP_PATH = insert_in_path.txt
 
   for e in ${PATH_ELEMENTS[@]}; do
-    echo $e >> $TMP_PATH
+    echo 'export' $e >> $TMP_PATH
   done
 
   FINAL_MSG = ".profile not found, config your path with the paths in $HOME/TMP_PATH"
@@ -221,8 +223,18 @@ sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean
 sudo apt autoremove -y
 
-#atualizando modo de acesso necessários
-sudo chmod -R 777 $DIR_SOFTWARES/*
+cd $DIR_SOFTWARES
+
+sudo chmod 777 ./Anaconda*
+sudo ./Anaconda*
+
+sudo chmod 777 ./xampp*
+sudo ./xampp
+
+cd android-studio/bin
+sudo chmod 777 ./studio.sh
+./studio.sh
+
 
 echo FINAL_MSG
 echo "All softwares and instalators are in $DIR_DOWNLOADS"
