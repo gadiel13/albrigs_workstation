@@ -2,6 +2,7 @@
 
 sudo apt update
 sudo apt upgrade -y
+sudo apt --fix-broken
 
 #Diretórios
 DIR_DOWNLOADS="$HOME/Downloads/fromscript"
@@ -87,6 +88,7 @@ SOFT_APT=(
   clamav #antivirus
   npm
   xclip
+  pikopixel.app
 )
 
 
@@ -199,6 +201,7 @@ PATH_ELEMENTS=(
   'PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
   'lampp=/opt/lampp/lampp'
   'marktext=$DIR_SOFTWARES/marktext*'
+  'pycharm=$DIR_SOFTWARES/pycharm-anaconda/bin/pycharm.sh'
 )
 
 
@@ -238,3 +241,4 @@ sudo chmod 777 ./studio.sh
 
 echo FINAL_MSG
 echo "All softwares and instalators are in $DIR_DOWNLOADS"
+
