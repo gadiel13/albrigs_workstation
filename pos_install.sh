@@ -176,7 +176,7 @@ sudo apt-get install sublime-text
 
 #instalando insomnia
 sudo snap install insomnia
-
+sudo snap install goxel
 sudo snap install hugo
 
 #tornando instaladores com mais passos executáveis
