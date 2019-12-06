@@ -34,6 +34,7 @@ SOFT_NPM=(
 
 #PROGRAMAS
 SOFT_APT=(
+  xz-utils
   gconfig2
   firefox
   telegram-desktop
@@ -115,10 +116,29 @@ done
 #acertando o nome do pacote deb
 mv deb atom.deb
 
-#extraindo zip
+#descompactações
 for e in ./*.zip; do
-  sudo unzip $e
+  unzip $e
 done
+
+for e in ./*.tar; do
+  tar -xvf $e
+done
+
+for e in ./*.tar.gz; do
+  tar -xvzf $e
+done
+
+for e in ./*.tar.bz2; do
+  tar -xvjf $e
+done
+
+for e in ./*.tar.xz; do
+  tar -xf $e
+done
+
+sudo rm ./*.tar*
+sudo rm ./*.zip
 
 
 # Instalar programas apt
@@ -162,7 +182,7 @@ sudo chmod 777 ./*.sh
 sudo chmod 777 ./*.AppImage
 
 #movendo Appimages para pasta de downloads
-mv ./*.AppImage $DIR_SOFTWARES
+sudo mv ./* $DIR_SOFTWARES
 
 FINAL_MSG="Finished"
 #definindo path
@@ -170,11 +190,13 @@ PROFILE_PATH="$HOME/.profile"
 PATH_ELEMENTS=(
   'export&nbsp;DIR_SOFTWARES="${HOME}/softwares"'
   'ANDROID_HOME =${HOME}/Android/Sdk'
-  'export&nbsp;PATH="${PATH}:/usr/lib/dart/bin"'
-  'export&nbsp;PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
-  'export&nbsp;PATH="${PATH}:${ANDROID_HOME}/tools"'
-  'export&nbsp;PATH=${PATH}:${ANDROID_HOME}/tools/bin'
-  'export&nbsp;PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
+  'export PATH="${PATH}:/usr/lib/dart/bin"'
+  'export PATH="${PATH}:$DIR_SOFTWARES/flutter/bin"'
+  'export PATH="${PATH}:${ANDROID_HOME}/tools"'
+  'export PATH=${PATH}:${ANDROID_HOME}/tools/bin'
+  'export PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
+  'export lampp=/opt/lampp/lampp'
+  'export marktext=$DIR_SOFTWARES/marktext*' 
 )
 
 
@@ -199,7 +221,8 @@ sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean
 sudo apt autoremove -y
 
-sudo chmod -R 777 $DIR_DOWNLOADS/*
+#atualizando modo de acesso necessários
 sudo chmod -R 777 $DIR_SOFTWARES/*
 
 echo FINAL_MSG
+echo "All softwares and instalators are in $DIR_DOWNLOADS"
