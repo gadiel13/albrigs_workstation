@@ -240,5 +240,5 @@ sudo chmod 777 ./studio.sh
 
 
 echo FINAL_MSG
-echo "All softwares and instalators are in $DIR_DOWNLOADS"
+echo "All softwares and instalers are in $DIR_SOFTWARES"
 
