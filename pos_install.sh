@@ -33,9 +33,13 @@ SOFT_NPM=(
   expo-cli
 )
 
+
 #PROGRAMAS
 SOFT_APT=(
   xz-utils
+  build-essential
+  checkinstall
+  libssl-dev
   gconfig2
   firefox
   telegram-desktop
@@ -173,6 +177,8 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-get update
 sudo apt-get install sublime-text
 
+#node version manager
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
 
 #instalando insomnia
 sudo snap install insomnia
