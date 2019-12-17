@@ -37,8 +37,25 @@ SOFT_NPM=(
 )
 
 
-#PROGRAMAS
+#PROGRAMAS -> primeiro as libs que são dependências
 SOFT_APT=(
+  gvfs-bin
+  libvulkan1
+  libvulkan1:i386
+  libgnutls30:i386
+  libldap-2.4-2:i386
+  libgpg-error0:i386
+  libxml2:i386
+  libasound2-plugins:i386
+  libsdl2-2.0-0:i386
+  libfreetype6:i386
+  libdbus-1-3:i386
+  libsqlite3-0:i386
+  libc6:i386
+  libncurses5:i386
+  libstdc++6:i386
+  lib32z1
+  libbz2-1.0:i386
   xz-utils
   build-essential
   checkinstall
@@ -62,23 +79,6 @@ SOFT_APT=(
   inkskape
   libreoffice
   scribus
-  gvfs-bin
-  libvulkan1
-  libvulkan1:i386
-  libgnutls30:i386
-  libldap-2.4-2:i386
-  libgpg-error0:i386
-  libxml2:i386
-  libasound2-plugins:i386
-  libsdl2-2.0-0:i386
-  libfreetype6:i386
-  libdbus-1-3:i386
-  libsqlite3-0:i386
-  libc6:i386
-  libncurses5:i386
-  libstdc++6:i386
-  lib32z1
-  libbz2-1.0:i386
   font-manager
   default-jre #java mais recente
   openjdk-8-jre #java 8
@@ -126,30 +126,6 @@ done
 #acertando o nome do pacote deb
 mv deb atom.deb
 
-#descompactações
-for e in ./*.zip; do
-  unzip $e
-done
-
-for e in ./*.tar; do
-  tar -xvf $e
-done
-
-for e in ./*.tar.gz; do
-  tar -xvzf $e
-done
-
-for e in ./*.tar.bz2; do
-  tar -xvjf $e
-done
-
-for e in ./*.tar.xz; do
-  tar -xf $e
-done
-
-sudo rm ./*.tar*
-sudo rm ./*.zip
-
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
   if ! dpkg -l | grep -q $e; then # Só instala se já não estiver instalado
@@ -177,6 +153,32 @@ done
 
 #Download piskel
 gdown 'https://drive.google.com/uc?export=download&id=1EFo7Ye_rl7bGNr4iehXIgFg4gn2IcWDX'
+
+#descompactações
+for e in ./*.zip; do
+  unzip $e
+done
+
+for e in ./*.tar; do
+  tar -xvf $e
+done
+
+for e in ./*.tar.gz; do
+  tar -xvzf $e
+done
+
+for e in ./*.tar.bz2; do
+  tar -xvjf $e
+done
+
+for e in ./*.tar.xz; do
+  tar -xf $e
+done
+
+sudo rm ./*.tar*
+sudo rm ./*.zip
+
+#renomeando pasta piskel
 mv ./Piskel* ./piskel
 
 sudo wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
