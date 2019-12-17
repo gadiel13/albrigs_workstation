@@ -25,6 +25,7 @@ URLS_WGET=(
 SOFT_PIP=(
   pelican
   kivy
+  jupyterthemes
 )
 
 #instalar com npm -g
@@ -194,6 +195,9 @@ sudo chmod 777 ./*.AppImage
 
 #movendo Appimages para pasta de downloads
 sudo mv ./* $DIR_SOFTWARES
+
+#trocando o tema do jupyter
+jt -t chesterish
 
 FINAL_MSG="Finished"
 #definindo path
