@@ -26,6 +26,7 @@ SOFT_PIP=(
   pelican
   kivy
   jupyterthemes
+  gdown
 )
 
 #instalar com npm -g
@@ -149,7 +150,6 @@ done
 sudo rm ./*.tar*
 sudo rm ./*.zip
 
-
 # Instalar programas apt
 for e in ${SOFT_APT[@]}; do
   if ! dpkg -l | grep -q $e; then # Só instala se já não estiver instalado
@@ -174,6 +174,10 @@ done
 for e in ${SOFT_NPM[@]}; do
   sudo npm install -g $e
 done
+
+#Download piskel
+gdown 'https://drive.google.com/uc?export=download&id=1EFo7Ye_rl7bGNr4iehXIgFg4gn2IcWDX'
+mv ./Piskel* ./piskel
 
 sudo wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
@@ -214,6 +218,7 @@ PATH_ELEMENTS=(
   'lampp=/opt/lampp/lampp'
   'marktext=$DIR_SOFTWARES/marktext*'
   'pycharm=$DIR_SOFTWARES/pycharm-anaconda/bin/pycharm.sh'
+  'piskel=$DIR_SOFTWARES/piskel/piskel'
 )
 
 
