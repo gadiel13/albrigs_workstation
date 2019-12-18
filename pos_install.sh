@@ -63,6 +63,7 @@ SOFT_APT=(
   checkinstall
   libssl-dev
   gconfig2
+  upx #fundamental para gerar executáveis com kivy
   firefox
   telegram-desktop
   snapd
@@ -99,6 +100,8 @@ SOFT_APT=(
   xclip
   pikopixel.app
   virtualbox
+  retroarch
+  megasync
 )
 
 
@@ -187,6 +190,12 @@ sudo rm ./*.zip
 #renomeando pasta piskel
 mv ./Piskel* ./piskel
 
+#Configurando retro arch
+ROMS = $SOFTWARES_DIR/roms
+mkdir $ROMS
+
+
+
 sudo wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt-get update
@@ -227,6 +236,7 @@ PATH_ELEMENTS=(
   'marktext=$DIR_SOFTWARES/marktext*'
   'pycharm=$DIR_SOFTWARES/pycharm-anaconda/bin/pycharm.sh'
   'piskel=$DIR_SOFTWARES/piskel/piskel'
+  'roms=${DIR_SOFTWARES}/roms'
 )
 
 
