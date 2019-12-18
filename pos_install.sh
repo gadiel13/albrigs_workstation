@@ -19,6 +19,7 @@ URLS_WGET=(
   "https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz?hl=pt-br"
   "https://github.com/minbrowser/min/releases/download/v1.7.0/Min_1.7.0_amd64.deb" #navegador minimalista
   "http://downloads.raspberrypi.org/rpd_x86/images/rpd_x86-2019-10-01/2019-09-25-rpd-x86-buster.iso"
+  "http://tinycorelinux.net/10.x/x86/release/Core-10.1.iso"
 )
 
 #instalar com pip
