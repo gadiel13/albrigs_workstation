@@ -24,3 +24,12 @@ portalockerfile
 python improved
 sublime code intel
 terminal view
+bowser integration
+hogofy
+advanced new file
+ftpsync
+color highlights
+view in bowser
+plant uml
+
+##--Shortcuts--##

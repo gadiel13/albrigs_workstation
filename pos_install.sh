@@ -28,6 +28,7 @@ SOFT_PIP=(
   kivy
   jupyterthemes
   gdown
+  pyinstaller
 )
 
 #instalar com npm -g
@@ -145,6 +146,10 @@ sudo rm -R ./*.deb
 # Instalar programas pip
 for e in ${SOFT_PIP[@]}; do
   pip install $e
+done
+
+for e in ${SOFT_PIP[@]}; do
+  pip3 install $e
 done
 
 # Instalar programas npm
