@@ -102,6 +102,7 @@ SOFT_APT=(
   virtualbox
   retroarch
   megasync
+  inkscape
 )
 
 
