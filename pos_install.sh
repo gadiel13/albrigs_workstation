@@ -41,6 +41,7 @@ SOFT_NPM=(
 
 #PROGRAMAS -> primeiro as libs que são dependências
 SOFT_APT=(
+  swig
   gvfs-bin
   libvulkan1
   libvulkan1:i386
@@ -72,6 +73,8 @@ SOFT_APT=(
   python2
   python3
   python3-pip
+  portaudio19-dev
+  python-all-dev
   dart
   krita
   jupyter-notebook
@@ -103,6 +106,7 @@ SOFT_APT=(
   retroarch
   megasync
   inkscape
+  dia
 )
 
 
