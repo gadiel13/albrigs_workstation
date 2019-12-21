@@ -11,6 +11,7 @@ DIR_FLUTTER="$DIR_SOFTWARES/flutter"
 DIR_ANDROID="$DIR_SOFTWARES/android"
 #Urls a baixar
 URLS_WGET=(
+  "https://github.com/simlu/voxelshop/releases/download/1.8.26/voxelshop-bin.zip"
   "https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz" #flutter
   "https://github.com/marktext/marktext/releases/download/v0.15.0/marktext-0.15.0-x86_64.AppImage" #marktext
   "https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh" #anaconda
