@@ -30,6 +30,7 @@ SOFT_PIP=(
   jupyterthemes
   gdown
   pyinstaller
+  virtualenv
 )
 
 #instalar com npm -g
@@ -108,6 +109,11 @@ SOFT_APT=(
   megasync
   inkscape
   dia
+  bluetooth
+  bluez
+  bluez-tools
+  rfkill
+  blueman
 )
 
 
@@ -209,6 +215,10 @@ sudo apt-get install sublime-text
 
 #node version manager
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+
+#Desbloqueando bluetooth
+sudo rfkill unblock bluetooth
+
 
 #instalando insomnia
 sudo snap install insomnia
