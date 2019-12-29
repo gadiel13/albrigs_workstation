@@ -236,6 +236,8 @@ sudo mv ./* $DIR_SOFTWARES
 #trocando o tema do jupyter
 jt -t chesterish
 
+mkdir $HOME/pyenvs
+
 FINAL_MSG="Finished"
 #definindo path
 PROFILE_PATH="$HOME/.profile"
@@ -248,11 +250,14 @@ PATH_ELEMENTS=(
   'PATH="${PATH}:${ANDROID_HOME}/tools"'
   'PATH=${PATH}:${ANDROID_HOME}/tools/bin'
   'PATH="${PATH}:${ANDROID_HOME}/platform-tools"'
+  ''
+  '#softwares a invocar'
   'lampp=/opt/lampp/lampp'
   'marktext=$DIR_SOFTWARES/marktext*'
   'pycharm=$DIR_SOFTWARES/pycharm-anaconda/bin/pycharm.sh'
   'piskel=$DIR_SOFTWARES/piskel/piskel'
   'roms=${DIR_SOFTWARES}/roms'
+  'pyenvs=${HOME}/pyenvs'
 )
 
 
