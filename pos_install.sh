@@ -61,6 +61,7 @@ SOFT_APT=(
   libstdc++6:i386
   lib32z1
   libbz2-1.0:i386
+  ffmpeg
   xz-utils
   build-essential
   checkinstall
