@@ -31,6 +31,8 @@ SOFT_PIP=(
   gdown
   pyinstaller
   virtualenv
+  youtube-dl
+  
 )
 
 #instalar com npm -g
@@ -161,10 +163,6 @@ sudo rm -R ./*.deb
 
 # Instalar programas pip
 for e in ${SOFT_PIP[@]}; do
-  pip install $e
-done
-
-for e in ${SOFT_PIP[@]}; do
   pip3 install $e
 done
 
@@ -259,6 +257,7 @@ PATH_ELEMENTS=(
   'piskel=$DIR_SOFTWARES/piskel/piskel'
   'roms=${DIR_SOFTWARES}/roms'
   'pyenvs=${HOME}/pyenvs'
+  'ytdl="youtube-dl --extract-audio --audio-format mp3"'
 )
 
 
