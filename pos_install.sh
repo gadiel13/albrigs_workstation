@@ -32,7 +32,8 @@ SOFT_PIP=(
   pyinstaller
   virtualenv
   youtube-dl
-  
+  pipreqs
+  pymato
 )
 
 #instalar com npm -g
@@ -47,6 +48,11 @@ SOFT_NPM=(
 SOFT_APT=(
   swig
   gvfs-bin
+  g++
+  libx11-dev
+  libxcursor-dev
+  cmake
+  ninja-build
   libvulkan1
   libvulkan1:i386
   libgnutls30:i386
@@ -63,6 +69,8 @@ SOFT_APT=(
   libstdc++6:i386
   lib32z1
   libbz2-1.0:i386
+  cmake
+  ninja-build
   ffmpeg
   xz-utils
   build-essential
@@ -117,6 +125,7 @@ SOFT_APT=(
   bluez-tools
   rfkill
   blueman
+  flatpak
 )
 
 
@@ -154,6 +163,10 @@ for e in ${SOFT_APT[@]}; do
     echo "$e - INSTALADO"
   fi
 done
+
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+flatpak install -y flathub com.github.libresprite.LibreSprite
 
 #instalando os .deb
 for e in ./*.deb; do
@@ -200,6 +213,7 @@ sudo rm ./*.zip
 
 #renomeando pasta piskel
 mv ./Piskel* ./piskel
+
 
 #Configurando retro arch
 ROMS = $SOFTWARES_DIR/roms
@@ -258,6 +272,8 @@ PATH_ELEMENTS=(
   'roms=${DIR_SOFTWARES}/roms'
   'pyenvs=${HOME}/pyenvs'
   'ytdl="youtube-dl --extract-audio --audio-format mp3"'
+  'libresprite="flatpak run com.github.libresprite.LibreSprite"'
+  'pomodoro="pymato pom"'
 )
 
 
