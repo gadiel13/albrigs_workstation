@@ -34,6 +34,7 @@ SOFT_PIP=(
   youtube-dl
   pipreqs
   pymato
+  twine
 )
 
 #instalar com npm -g
