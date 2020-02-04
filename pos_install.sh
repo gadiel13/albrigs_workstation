@@ -33,7 +33,7 @@ SOFT_PIP=(
   virtualenv
   youtube-dl
   pipreqs
-  pymato
+  pymodore
   twine
 )
 
