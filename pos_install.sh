@@ -70,6 +70,9 @@ SOFT_APT=(
   libstdc++6:i386
   lib32z1
   libbz2-1.0:i386
+  liballegro4.4
+  libdevil1c2
+  libphysfs1
   cmake
   ninja-build
   ffmpeg
@@ -127,6 +130,7 @@ SOFT_APT=(
   rfkill
   blueman
   flatpak
+  love
 )
 
 
