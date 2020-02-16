@@ -131,6 +131,9 @@ SOFT_APT=(
   blueman
   flatpak
   love
+  wget 
+  gnupg 
+  software-properties-common
 )
 
 
@@ -149,6 +152,11 @@ mkdir $DIR_ANDROID
 mkdir $DIR_ANACONDA
 mkdir $DIR_DOWNLOADS
 #fazendo downloads
+
+wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+sudo apt update -y
+sudo apt install adoptopenjdk-8-hotspot -y
 
 cd $DIR_DOWNLOADS
 
@@ -237,6 +245,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | b
 #Desbloqueando bluetooth
 sudo rfkill unblock bluetooth
 
+#trocando java
+sudo update-alternatives --config java
 
 #instalando insomnia
 sudo snap install insomnia
