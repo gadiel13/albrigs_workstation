@@ -129,6 +129,7 @@ SOFT_APT=(
   rfkill
   blueman
   flatpak
+  snaped
   love
   wget 
   gnupg 
@@ -240,6 +241,9 @@ sudo wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-ke
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt-get update
 sudo apt-get install sublime-text
+
+snap install code --classic
+snap install hugo
 
 #node version manager
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
