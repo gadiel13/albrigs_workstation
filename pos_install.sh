@@ -41,6 +41,7 @@ SOFT_NPM=(
   ionic
   n
   expo-cli
+  totalcross-cli
 )
 
 
