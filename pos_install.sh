@@ -20,6 +20,7 @@ URLS_WGET=(
   "https://github.com/minbrowser/min/releases/download/v1.7.0/Min_1.7.0_amd64.deb" #navegador minimalista
   "http://downloads.raspberrypi.org/rpd_x86/images/rpd_x86-2019-10-01/2019-09-25-rpd-x86-buster.iso"
   "http://tinycorelinux.net/10.x/x86/release/Core-10.1.iso"
+  "https://github.com/electron/fiddle/releases/download/v0.12.0/electron-fiddle_0.12.0_amd64.deb"
 )
 
 #instalar com pip
@@ -74,7 +75,24 @@ SOFT_APT=(
   libdevil1c2
   libphysfs1
   cmake
+  libdbus-1-dev
+  libgtk-3-dev
+  libnotify-dev
+  libgnome-keyring-dev
+  libasound2-dev
+  libcap-dev
+  libcups2-dev
+  libxtst-dev
+  libxss1
+  libnss3-dev
+  gcc-multilib
+  g++-multilib
+  gperf
+  bison
+  python-dbusmock
   ninja-build
+  build-essential
+  clang
   ffmpeg
   xz-utils
   build-essential
