@@ -249,6 +249,9 @@ snap install hugo
 #node version manager
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
 
+#meteor
+curl https://install.meteor.com/ | sh
+
 #Desbloqueando bluetooth
 sudo rfkill unblock bluetooth
 
