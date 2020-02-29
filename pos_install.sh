@@ -43,6 +43,7 @@ SOFT_NPM=(
   n
   expo-cli
   totalcross-cli
+  @quasar/cli
 )
 
 
