@@ -156,6 +156,10 @@ SOFT_APT=(
   software-properties-common
   android-sdk
   android-sdk-platform-23
+  r-base 
+  r-base-dev
+  libatlas3-base
+  spyder
 )
 
 
