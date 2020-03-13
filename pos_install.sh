@@ -216,16 +216,13 @@ sudo rm -R ./*.deb
 
 # Instalar programas pip
 for e in ${SOFT_PIP[@]}; do
-  pip3 install $e
+  sudo pip3 install $e
 done
 
 # Instalar programas npm
 for e in ${SOFT_NPM[@]}; do
   sudo npm install -g $e
 done
-
-#Download piskel
-gdown 'https://drive.google.com/uc?export=download&id=1EFo7Ye_rl7bGNr4iehXIgFg4gn2IcWDX'
 
 #descompactações
 for e in ./*.zip; do
@@ -283,7 +280,6 @@ sudo update-alternatives --config java
 
 #instalando insomnia
 sudo snap install insomnia
-sudo snap install goxel
 sudo snap install hugo
 
 #tornando instaladores com mais passos executáveis
@@ -303,6 +299,7 @@ FINAL_MSG="Finished"
 #definindo path
 PROFILE_PATH="$HOME/.profile"
 STRING_SPACE = ' '
+
 PATH_ELEMENTS=(
   'DIR_SOFTWARES="${HOME}/softwares"'
   'ANDROID_HOME =/usr/lib/android-sdk'
