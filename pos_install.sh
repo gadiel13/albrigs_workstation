@@ -17,7 +17,6 @@ URLS_WGET=(
   "https://www.apachefriends.org/xampp-files/7.3.11/xampp-linux-x64-7.3.11-0-installer.run" #xampp
   "https://atom.io/download/deb" #atom
   "https://github.com/minbrowser/min/releases/download/v1.7.0/Min_1.7.0_amd64.deb" #navegador minimalista
-  "http://downloads.raspberrypi.org/rpd_x86/images/rpd_x86-2019-10-01/2019-09-25-rpd-x86-buster.iso"
   "http://tinycorelinux.net/10.x/x86/release/Core-10.1.iso"
   "https://github.com/electron/fiddle/releases/download/v0.12.0/electron-fiddle_0.12.0_amd64.deb"
 )
