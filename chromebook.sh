@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-GIT_EMAIL = 'natanfernandessantos@protonmail.com'
-GIT_NAME = 'NatanFernandesSantos'
+GIT_EMAIL = ''
+GIT_NAME = ''
 
 # Tirando travas do apt
 sudo rm /var/lib/dpkg/lock-frontend
