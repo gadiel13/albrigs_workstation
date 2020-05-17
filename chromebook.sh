@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+GIT_EMAIL = 'natanfernandessantos@protonmail.com'
+GIT_NAME = 'NatanFernandesSantos'
+
 # Tirando travas do apt
 sudo rm /var/lib/dpkg/lock-frontend
 sudo rm /var/cache/apt/archives/lock
@@ -9,31 +12,39 @@ sudo dpkg --add-architecture i386
 sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com 241FE6973B765FAE
 sudo apt update
 sudo apt upgrade
-sudo apt --fix-broken
-
-GIT_EMAIL = ''
-GIT_NAME = ''
+sudo apt --fix-broken install
 
 I_APT=(
 	#Gerenciadores de pacotes
-	snapd flathub
+	snapd
+	flathub
 	#Programação
-	python3 default-jre openjdk-8-jre
-	python3-pip npm
-	android-sdk android-sdk-platform-tools	
-	#Midia	
-	ffmpeg okular audacity
+	python3
+	default-jre
+	openjdk-8-jre
+	python3-pip
+	npm
+	android-sdk
+	android-sdk-platform-tools
+	#Midia
+	ffmpeg
+	okular
+	audacity
 	#Web
-	transmission firefox apt-transport-https
-	preload putty
+	transmission
+	firefox
+	apt-transport-https
+	preload
+	putty
 	#Texto
-	xclip nano
+	xclip
+	nano
 	#Graficos
 	dia
 
 	git
 	ppa-purge
-	gufw		
+	gufw
 	xz-utils
 	clamav
 	wget
@@ -42,19 +53,28 @@ I_APT=(
 )
 
 R_APT=(
-	audacious audacious-plugins audacious-plugins-data
+	audacious
+	audacious-plugins
+	audacious-plugins-data
 	simple-scan
-	atril atril-common chromium-browser
+	atril
+	atril-common
+	chromium-browser
 )
 
-I_PIP=( 
+I_PIP=(
 	pyinstaller virtualenv pipreqs
 	youtube-dl pymodore
 )
 
-I_NPM=( n gitmoji-cli )
+I_NPM=(
+	n
+	gitmoji-cli )
 
-I_SNAP=( hugo insomnia ) 
+I_SNAP=(
+	hugo
+	insomnia
+)
 
 URLS_WGET=(
   "https://atom.io/download/deb" #atom
@@ -67,7 +87,8 @@ for e in ${URLS_WGET[@]}; do wget -c "$e" && echo "$e - BAIXADO"; done
 mv deb atom.deb
 
 # Instalar programas apt
-for e in ${R_APT[@]}; do sudo apt remove $e; done
+for e in ${R_APT[@]}; do sudo apt -y remove $e; done
+sudo apt --fix-broken install
 for e in ./*.deb; do sudo dpkg -i $e; done
 for e in ${I_PIP[@]}; do sudo pip3 install $e; done
 for e in ${I_SNAP[@]}; do sudo snap install $e; done
@@ -84,7 +105,7 @@ sudo apt-get update
 sudo apt-get install dart
 
 #logando no github
-git config --global user.name $GIT_NAME 
+git config --global user.name $GIT_NAME
 git config --global user.email $GIT_EMAIL
 
 
@@ -109,13 +130,13 @@ sudo update-alternatives --config java
 PROFILE_PATH="$HOME/.profile"
 
 PATH_ELEMENTS=(
-	'ANDROID_HOME =/usr/lib/android-sdk'
-	'PATH=$ANDROID_HOME/tools:$PATH'
-	'PATH=$ANDROID_HOME/tools/bin:$PATH'
-	'PATH=$ANDROID_HOME/platform-tools:$PATH'
-	'PATH="${PATH}:/usr/lib/dart/bin"'
-	'PATH="${PATH}:/usr/lib/flutter/bin"'
-	'PATH="$PATH:/usr/lib/dart/bin"'
+	'ANDROID_HOME=/usr/lib/android-sdk'
+	'PATH=${PATH}:$ANDROID_HOME/tools'
+	'PATH=${PATH}:$ANDROID_HOME/tools/bin'
+	'PATH=${PATH}:$ANDROID_HOME/platform-tools'
+	'PATH=${PATH}:/usr/lib/dart/bin'
+	'PATH=${PATH}:/usr/lib/flutter/bin'
+	'PATH=${PATH}:/usr/lib/dart/bin'
 )
 
 for e in ${PATH_ELEMENTS[@]}; do echo 'export' $e >> $PROFILE_PATH; done
@@ -129,6 +150,10 @@ sdkmanager "build-tools;29.0.2"
 
 flutter config --android-sdk /usr/lib/android-sdk
 
+# Tirando travas do apt
+sudo rm /var/lib/dpkg/lock-frontend
+sudo rm /var/cache/apt/archives/lock
+
 sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean && sudo apt autoremove -y
 
@@ -139,7 +164,7 @@ sudo mkdir /usr/share/alsa/ucm/PCH/
 wget https://raw.githubusercontent.com/drinkcat/adhd/master/ucm-config/falco/HDA%20Intel%20PCH/HDA%20Intel%20PCH.conf
 wget https://raw.githubusercontent.com/drinkcat/adhd/master/ucm-config/falco/HDA%20Intel%20PCH/HiFi.conf
 sudo mv *.conf /usr/share/alsa/ucm/PCH/
-mv 'HDA Intel PCH.conf' PCH.conf
+sudo mv 'HDA Intel PCH.conf' PCH.conf
 
 sudo cp /usr/share/alsa/ucm/chtrt5645/ /usr/share/alsa/ucm/chtrt5650/
 sudo mv /usr/share/alsa/ucm/chtrt5650/chtrt5645.conf /usr/share/alsa/ucm/chtrt5650/chtrt5650.conf
@@ -157,3 +182,4 @@ sudo apt -qq update
 sudo apt full-upgrade
 
 echo "ACABOU :^), hora do reboot"
+
