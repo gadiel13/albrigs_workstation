@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-GIT_EMAIL = ''
-GIT_NAME = ''
-
 # Tirando travas do apt
 sudo rm /var/lib/dpkg/lock-frontend
 sudo rm /var/cache/apt/archives/lock
@@ -14,18 +11,19 @@ sudo apt update
 sudo apt upgrade
 sudo apt --fix-broken install
 
+read -p 'E-mail github: ' GIT_EMAIL
+read -p 'User github: ' GIT_NAME
+
 I_APT=(
 	#Gerenciadores de pacotes
 	snapd
 	flathub
 	#Programação
 	python3
-	default-jre
-	openjdk-8-jre
+	default-jdk
+	openjdk-8-jdk
 	python3-pip
 	npm
-	android-sdk
-	android-sdk-platform-tools
 	#Midia
 	ffmpeg
 	okular
@@ -108,12 +106,6 @@ sudo apt-get install dart
 git config --global user.name $GIT_NAME
 git config --global user.email $GIT_EMAIL
 
-
-#flutter
-git clone https://github.com/flutter/flutter.git -b stable
-sudo mv flutte* /usr/lib
-
-
 #descompactando até a alma
 for e in ./*.zip; do unzip $e; done
 for e in ./*.tar; do tar -xvf $e; done
@@ -121,15 +113,25 @@ for e in ./*.tar.gz; do tar -xvzf $e; done
 for e in ./*.tar.bz2; do tar -xvjf $e; done
 for e in ./*.tar.xz; do tar -xf $e; done
 
+#flutter
+git clone https://github.com/flutter/flutter.git -b stable
+sudo mv flutte* /usr/lib
+
+#android sdk cli
+sudo mkdir /usr/lib/android-sdk
+sudo mv tools /usr/lib/android-sdk
+
 #apagando tudo
 sudo rm ./*.tar* && sudo rm ./*.zip && sudo rm -R ./*.deb
 
+echo "Use o JDK 8"
 sudo update-alternatives --config java
 
 #definindo path
 PROFILE_PATH="$HOME/.profile"
 
 PATH_ELEMENTS=(
+	'ANDROID_SDK_ROOT=/usr/lib/android-sdk'
 	'ANDROID_HOME=/usr/lib/android-sdk'
 	'PATH=${PATH}:$ANDROID_HOME/tools'
 	'PATH=${PATH}:$ANDROID_HOME/tools/bin'
@@ -142,6 +144,8 @@ PATH_ELEMENTS=(
 for e in ${PATH_ELEMENTS[@]}; do echo 'export' $e >> $PROFILE_PATH; done
 source $PROFILE_PATH
 
+# TODO -> trocar no SDK manager DEFAULT_JVM_OPTS='"-Dcom.android.sdklib.toolsdir=$APP_HOME" -XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
+sdkmanager --sdk_root=$ANDROID_SDK_ROOT
 sdkmanager "system-images;android-29;google_apis;x86_64"
 sdkmanager "platforms;android-29"
 sdkmanager "platform-tools"
@@ -157,6 +161,7 @@ sudo rm /var/cache/apt/archives/lock
 sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean && sudo apt autoremove -y
 
+flutter doctor
 
 # Concertando audio dessa merda
 sudo mkdir /usr/share/alsa/ucm/PCH/
@@ -182,4 +187,4 @@ sudo apt -qq update
 sudo apt full-upgrade
 
 echo "ACABOU :^), hora do reboot"
-
+echo -en "\007"
