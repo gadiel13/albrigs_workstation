@@ -80,6 +80,40 @@ URLS_WGET=(
   "https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip"
 )
 
+I_ATOM=(
+	#Genéricos
+	file-icons
+	atom-clock
+	teletype
+	highlight-selected
+	pigments
+	autocomplete-paths
+	pane-layout-plus
+	expose
+	sublime-style-column-selection
+	platformio-ide-terminal
+	todo-show
+
+	#html
+	emmet
+	autoclose-html-plus
+	atom-html-preview
+
+	#git
+	git-blame
+	git-plus
+	git-time-machine
+
+	#python
+	autocomplete-python
+	python-isort
+
+	#dart
+	dart
+
+	#js
+)
+
 ## Download e instalaçao de programas externos ##
 for e in ${URLS_WGET[@]}; do wget -c "$e" && echo "$e - BAIXADO"; done
 mv deb atom.deb
@@ -92,6 +126,7 @@ for e in ${I_PIP[@]}; do sudo pip3 install $e; done
 for e in ${I_SNAP[@]}; do sudo snap install $e; done
 for e in ${I_NPM[@]}; do sudo npm install -g $e; done
 for e in ${I_APT[@]}; do if ! dpkg -l | grep -q $e; then sudo apt -f -y install $e; fi; done
+for e in ${I_ATOM[@]}; do apm install $e; done
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub com.github.libresprite.LibreSprite
