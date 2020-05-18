@@ -61,8 +61,11 @@ R_APT=(
 )
 
 I_PIP=(
-	pyinstaller virtualenv pipreqs
-	youtube-dl pymodore
+	pyinstaller
+	virtualenv
+	pipreqs
+	youtube-dl
+	pymodore
 )
 
 I_NPM=(
