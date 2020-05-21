@@ -49,6 +49,7 @@ I_APT=(
 	unzip
 	bash
 	android-sdk
+	libglu1-mesa
 )
 
 R_APT=(
@@ -206,24 +207,11 @@ flutter upgrade
 flutter doctor 
 
 # Concertando audio dessa merda
-sudo mkdir /usr/share/alsa/ucm/PCH/
-
-wget https://raw.githubusercontent.com/drinkcat/adhd/master/ucm-config/falco/HDA%20Intel%20PCH/HDA%20Intel%20PCH.conf
-wget https://raw.githubusercontent.com/drinkcat/adhd/master/ucm-config/falco/HDA%20Intel%20PCH/HiFi.conf
-sudo mv *.conf /usr/share/alsa/ucm/PCH/
-sudo mv 'HDA Intel PCH.conf' PCH.conf
-
 sudo cp /usr/share/alsa/ucm/chtrt5645/ /usr/share/alsa/ucm/chtrt5650/
 sudo mv /usr/share/alsa/ucm/chtrt5650/chtrt5645.conf /usr/share/alsa/ucm/chtrt5650/chtrt5650.conf
 
 wget https://apt.galliumos.org/pool/main/g/galliumos-skylake/galliumos-skylake_2.0.2_all.deb
 sudo dpkg --ignore-depends=galliumos-base -i galliumos-skylake_2.0.2_all.deb
-
-sudo apt install --reinstall linux-firmware
-sudo apt install --reinstall alsa-base alsa-utils pulseaudio linux-sound-base libasound2
-
-
-sudo alsa force-reload
 
 sudo apt -qq update
 sudo apt full-upgrade
