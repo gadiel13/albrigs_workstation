@@ -169,6 +169,7 @@ sudo update-alternatives --config java
 PROFILE_PATH="$HOME/.profile"
 
 PATH_ELEMENTS=(
+	'ENABLE_FLUTTER_DESKTOP=true'
 	'ANDROID_SDK_ROOT=/usr/lib/android-sdk'
 	'ANDROID_HOME=/usr/lib/android-sdk'
 	'PATH=${PATH}:$ANDROID_HOME/tools'
@@ -199,7 +200,9 @@ sudo rm /var/cache/apt/archives/lock
 sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean && sudo apt autoremove -y
 
-flutter doctor
+flutter channel master
+flutter upgrade
+flutter doctor 
 
 # Concertando audio dessa merda
 sudo mkdir /usr/share/alsa/ucm/PCH/
