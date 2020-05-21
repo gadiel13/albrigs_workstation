@@ -135,8 +135,7 @@ I_ATOM=(
 	python-isort
 
 	#dart
-	dart
-
+	libglu1-mesa
 	#js
 )
 
@@ -161,7 +160,7 @@ flatpak install -y flathub com.github.libresprite.LibreSprite
 sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
 sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
 sudo apt-get update
-sudo apt-get install dart
+sudo apt-get -y install dart
 
 #logando no github
 git config --global user.name $GIT_NAME
