@@ -8,8 +8,8 @@ sudo rm /var/cache/apt/archives/lock
 sudo dpkg --add-architecture i386
 sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com 241FE6973B765FAE
 sudo apt update
-sudo apt upgrade
-sudo apt --fix-broken install
+sudo apt -y upgrade
+sudo apt -y --fix-broken install
 
 read -p 'E-mail github: ' GIT_EMAIL
 read -p 'User github: ' GIT_NAME
@@ -126,8 +126,10 @@ mv deb atom.deb
 
 # Instalar programas apt
 for e in ${R_APT[@]}; do sudo apt -y remove $e; done
-sudo apt --fix-broken install
+sudo apt -y --fix-broken install
 for e in ./*.deb; do sudo dpkg -i $e; done
+sudo apt -y --fix-broken install
+
 for e in ${I_PIP[@]}; do sudo pip3 install $e; done
 for e in ${I_SNAP[@]}; do sudo snap install $e; done
 for e in ${I_NPM[@]}; do sudo npm install -g $e; done
