@@ -63,6 +63,7 @@ I_APT=(
 	wget
 	unzip
 	bash
+	android-sdk
 )
 
 
@@ -177,7 +178,6 @@ git clone https://github.com/flutter/flutter.git -b stable
 sudo mv flutte* /usr/lib
 
 #android sdk cli
-sudo mkdir /usr/lib/android-sdk
 sudo mv tools /usr/lib/android-sdk
 
 sudo chmod 777 ./xampp*
