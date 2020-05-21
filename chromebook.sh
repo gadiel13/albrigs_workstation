@@ -76,6 +76,7 @@ I_NPM=(
 I_SNAP=(
 	hugo
 	insomnia
+	wps-office
 )
 
 URLS_WGET=(
