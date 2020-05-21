@@ -223,7 +223,9 @@ sudo rm /var/cache/apt/archives/lock
 sudo apt update && sudo apt dist-upgrade -y
 sudo apt autoclean && sudo apt autoremove -y
 
-flutter doctor
+flutter channel master
+flutter upgrade
+flutter doctor 
 
 echo "ACABOU :^), hora do reboot"
 echo -en "\007"
