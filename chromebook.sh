@@ -48,6 +48,7 @@ I_APT=(
 	wget
 	unzip
 	bash
+	android-sdk
 )
 
 R_APT=(
@@ -156,7 +157,6 @@ git clone https://github.com/flutter/flutter.git -b stable
 sudo mv flutte* /usr/lib
 
 #android sdk cli
-sudo mkdir /usr/lib/android-sdk
 sudo mv tools /usr/lib/android-sdk
 
 #apagando tudo
