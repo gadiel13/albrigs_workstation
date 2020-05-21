@@ -17,7 +17,7 @@ read -p 'User github: ' GIT_NAME
 I_APT=(
 	#Gerenciadores de pacotes
 	snapd
-	flathub
+	flatpak
 	#Programação
 	python3
 	default-jdk
