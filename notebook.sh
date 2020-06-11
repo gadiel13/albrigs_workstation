@@ -27,7 +27,9 @@ I_APT=(
 	r-base
 	r-base-dev
 	spyder
+	lua
 	jupyter-notebook
+	love
 	#Midia
 	ffmpeg
 	okular
@@ -120,6 +122,9 @@ I_ATOM=(
 	platformio-ide-terminal
 	todo-show
 
+	#lua
+	atom-autocomplete-lua
+	
 	#html
 	emmet
 	autoclose-html-plus
@@ -155,6 +160,8 @@ for e in ${I_ATOM[@]}; do apm install $e; done
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub com.github.libresprite.LibreSprite
+
+sudo n lts
 
 #dart
 sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
